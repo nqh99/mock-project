@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,35 +49,39 @@ public class ClassBatch extends BaseEntity {
 	@NotEmpty(message = "Class code cannot be empty")
 	private String classCode;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "BUDGET_ID")
 	private Budget budget;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "SUBJECT_TYPE_ID")
 	private SubjectType subjectType;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "SUB_SUBJECT_TYPE_ID")
 	private SubSubjectType subSubjectType;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "DELIVERY_TYPE_ID")
 	private DeliveryType deliveryType;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "FORMAT_TYPE_ID")
 	private FormatType formatType;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "SCOPE_ID")
 	private Scope scope;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "CLASS_STATUS_ID")
+	private ClassStatus classStatus;
+	
+	@ManyToOne
 	@JoinColumn(name = "SUPPLIER_PARTNER_ID")
 	private SupplierPartner supplierPartner;
 	
@@ -125,8 +130,9 @@ public class ClassBatch extends BaseEntity {
 	@Column(name = "MILESTONES", columnDefinition = "INT")
 	private Integer milestones;
 	
-	@Column(name = "CURRICULUM", columnDefinition = "INT")
-	private Integer curriculum;
+	//De luu dia chi cua curriculum va dem len front end sau do
+	@Column(name = "CURRICULUM", columnDefinition = "NVARCHAR(MAX)")
+	private String curriculum;
 	
 	@OneToMany(mappedBy = "classBatch")
 	private Set<Trainee> setOfTrainees;
@@ -136,6 +142,9 @@ public class ClassBatch extends BaseEntity {
 	
 	@Column(name = "REMARKS", columnDefinition = "INT")
 	private Integer remarks;
+	
+	@Column(name = "HISTORY", columnDefinition = "NVARCHAR(255)")
+	private String history;
 	
 
 }

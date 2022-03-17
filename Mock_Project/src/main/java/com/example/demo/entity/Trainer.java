@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +25,10 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(exclude = { "trainerProfile", "classBatch", "setOfInterviews", "setOfInterviewValuations",
-		"setOfAudits", "setOfTechnicalEntryTests", "setOfLanguageEntryTests" })
+		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests", "setOfAuditsRelatedTo" })
 @EqualsAndHashCode(exclude = { "trainerProfile", "classBatch", "setOfInterviews", "setOfInterviewValuations",
-		"setOfAudits", "setOfTechnicalEntryTests", "setOfLanguageEntryTests" }, callSuper = false)
+		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests",
+		"setOfAuditsRelatedTo" }, callSuper = false)
 @Entity
 @Table(name = "TRAINER")
 @NamedNativeQueries({
@@ -51,7 +53,7 @@ public class Trainer extends User {
 	@Column(name = "REMARKS", columnDefinition = "INT")
 	private Integer remarks;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TRAINER_PROFILE_ID")
 	private TrainerProfile trainerProfile;
 
@@ -66,7 +68,10 @@ public class Trainer extends User {
 	private Set<InterviewValuation> setOfInterviewValuations;
 
 	@OneToMany(mappedBy = "pic")
-	private Set<Audit> setOfAudits;
+	private Set<Audit> setOfAuditsInCharge;
+
+	@OneToMany(mappedBy = "relatedPartyPeople")
+	private Set<Audit> setOfAuditsRelatedTo;
 
 	@OneToMany(mappedBy = "technicalValuator")
 	private Set<EntryTest> setOfTechnicalEntryTests;

@@ -11,8 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.PastOrPresent;
-
+import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
@@ -46,7 +45,7 @@ public class ClassAdminProfile extends BaseEntity {
 	private String fullName;
 	
 	@Temporal(TemporalType.DATE)
-	@PastOrPresent(message = "Birthdate cannot be in the future")
+	@Past(message = "Birthdate cannot be in the future")
 	@Column(name = "DATE_OF_BIRTH")
 	private Date dateOfBirth;
 	

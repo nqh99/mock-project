@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +41,7 @@ public class ClassAdmin extends User {
 	@OneToOne(mappedBy = "classAdmin")
 	private ClassBatch classBatch;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CLASS_ADMIN_PROFILE_ID")
 	private ClassAdminProfile classAdminProfile;
 

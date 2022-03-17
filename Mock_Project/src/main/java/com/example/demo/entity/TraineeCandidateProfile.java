@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -53,11 +54,11 @@ public class TraineeCandidateProfile extends BaseEntity {
 	@Column(name = "GENDER", columnDefinition = "NVARCHAR(255)")
 	private String gender;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "UNIVERSITY_ID")
 	private University university;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "FACULTY_ID")
 	private Faculty faculty;
 
