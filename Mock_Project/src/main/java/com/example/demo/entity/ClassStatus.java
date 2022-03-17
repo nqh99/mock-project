@@ -17,34 +17,31 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "setOfClassBatches" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "setOfClassBatches" }, callSuper = false)
+@ToString(exclude = { "setOfClassBatches"}, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfClassBatches"}, callSuper = false)
 @Entity
-@Table(name = "DELIVERY_TYPE")
-public class DeliveryType extends BaseEntity {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public DeliveryType(String deliveryTypeName) {
+@Table(name = "CLASS_STATUS")
+public class ClassStatus {
+	
+	
+	
+	public ClassStatus(String classStatusName) {
 		super();
-		this.deliveryTypeName = deliveryTypeName;
+		this.classStatusName = classStatusName;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "DELIVERY_TYPE_ID", columnDefinition = "INT")
+	@Column(name = "CLASS_STATUS_ID", columnDefinition = "INT")
 	private Integer id;
-
-	@OneToMany(mappedBy = "deliveryType")
+	
+	@OneToMany(mappedBy = "classStatus")
 	private Set<ClassBatch> setOfClassBatches;
-
+	
 	@Column(name = "REMARKS", columnDefinition = "INT")
 	private Integer remarks;
-
-	@Column(name = "DELIVERY_TYPE_NAME", columnDefinition = "NVARCHAR(255)")
-	private String deliveryTypeName;
+	
+	@Column(name = "CLASS_STATUS_NAME", columnDefinition = "NVARCHAR(255)")
+	private String classStatusName;
 
 }

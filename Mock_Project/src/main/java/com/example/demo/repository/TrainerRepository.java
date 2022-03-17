@@ -9,4 +9,6 @@ import com.example.demo.entity.Trainer;
 public interface TrainerRepository extends JpaRepository<Trainer, Integer> {
 	
 	Trainer findByUsername(String username);
+	
+	Trainer findByTrainerProfile_FullNameIs (String fullName);
 }

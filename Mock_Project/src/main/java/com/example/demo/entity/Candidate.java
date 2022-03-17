@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,7 +49,7 @@ public class Candidate extends BaseEntity {
 	@OneToMany(mappedBy = "candidate")
 	private Set<Channel> setOfChannels;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
 

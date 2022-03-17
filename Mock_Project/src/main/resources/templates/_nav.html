@@ -7,22 +7,11 @@
 			alt="" width="64" height="42"> <span class="mx-5 fs-4">FSOFT
 				HR UTILITY</span>
 		</a>
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button"
-				id="dropdownMenuButton1" data-bs-toggle="dropdown"
-				aria-expanded="false">
-				<i class="bi bi-person-fill"></i>
-			</button>
-			<ul class="dropdown-menu dropdown-menu-lg-end"
-				aria-labelledby="dropdownMenuButton1">
-				<li><a class="dropdown-item" th:href="@{/view_product}"> <!--th:text="${'User: ' + session.loginedUser.username}"!-->
-						<i class="bi bi-person-fill"></i> User: <span
-						sec:authentication="name"></span> <br> <span
-						sec:authentication="principal.authorities"> </span></a></li>
-				<li><hr class="dropdown-divider"></li>
-				<li><a class="dropdown-item" th:href="@{/}"><i
-						class="bi bi-box-arrow-right"></i> Logout</a></li>
-			</ul>
-		</div>
+		<p class="text-white">
+			Welcome, <a class="text-white" href=""><span
+						th:text="${#authentication.getPrincipal().getUsername()}"></span></a>, <a
+				class="text-white" href="./login.html"><i
+				class="bi bi-box-arrow-right"></i> Logout</a>
+		</p>
 	</div>
 </nav>

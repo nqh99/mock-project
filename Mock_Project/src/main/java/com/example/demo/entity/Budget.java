@@ -1,11 +1,13 @@
 package com.example.demo.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -15,8 +17,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "classBatch"}, callSuper = false)
-@EqualsAndHashCode(exclude = { "classBatch"}, callSuper = false)
+@ToString(exclude = { "setOfClassBatches"}, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfClassBatches"}, callSuper = false)
 @Entity
 @Table(name = "BUDGET")
 public class Budget extends BaseEntity {
@@ -26,13 +28,18 @@ public class Budget extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public Budget(String budgetName) {
+		super();
+		this.budgetName = budgetName;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BUDGET_ID", columnDefinition = "INT")
 	private Integer id;
 	
-	@OneToOne(mappedBy = "budget")
-	private ClassBatch classBatch;
+	@OneToMany(mappedBy = "budget")
+	private Set<ClassBatch> setOfClassBatches;
 	
 	@Column(name = "REMARKS", columnDefinition = "INT")
 	private Integer remarks;

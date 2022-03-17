@@ -1,11 +1,13 @@
 package com.example.demo.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -15,8 +17,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "traineeCandidateProfile" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "traineeCandidateProfile" }, callSuper = false)
+@ToString(exclude = { "SetOfTraineeCandidateProfiles" }, callSuper = false)
+@EqualsAndHashCode(exclude = { "SetOfTraineeCandidateProfiles" }, callSuper = false)
 @Entity
 @Table(name = "UNIVERSITY")
 public class University extends BaseEntity {
@@ -37,7 +39,7 @@ public class University extends BaseEntity {
 	@Column(name = "REMARKS", columnDefinition = "INT")
 	private Integer remarks;
 	
-	@OneToOne(mappedBy = "university")
-	private TraineeCandidateProfile traineeCandidateProfile;
+	@OneToMany(mappedBy = "university")
+	private Set<TraineeCandidateProfile> SetOfTraineeCandidateProfiles;
 
 }
