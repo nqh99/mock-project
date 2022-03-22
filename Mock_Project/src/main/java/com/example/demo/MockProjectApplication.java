@@ -44,7 +44,7 @@ import com.example.demo.repository.TrainerRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.utils.DateUtils;
 import com.example.demo.utils.HibernateValidator;
-
+//nducmy
 @SpringBootApplication
 @ComponentScan(value = "com.example.demo")
 public class MockProjectApplication  implements CommandLineRunner{
