@@ -43,8 +43,8 @@ public class SubSubjectType extends BaseEntity {
 	@OneToMany(mappedBy = "subSubjectType")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "SUB_SUBJECT_TYPE_NAME", columnDefinition = "NVARCHAR(255)")
 	private String subSubjectTypeName;

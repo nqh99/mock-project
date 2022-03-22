@@ -48,8 +48,8 @@ public class InterviewValuation extends BaseEntity{
 	@JoinColumn(name = "TRAINER_ID")
 	private Trainer interviewer;
 	
-	@Column(name = "REMAKRS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	
 

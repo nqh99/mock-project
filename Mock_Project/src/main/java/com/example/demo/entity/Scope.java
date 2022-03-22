@@ -43,8 +43,8 @@ public class Scope extends BaseEntity {
 	@OneToMany(mappedBy = "scope")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "SCOPE_NAME", columnDefinition = "NVARCHAR(255)")
 	private String scopeName;

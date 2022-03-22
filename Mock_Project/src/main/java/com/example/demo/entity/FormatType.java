@@ -43,8 +43,8 @@ public class FormatType extends BaseEntity {
 	@OneToMany(mappedBy = "formatType")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "FORMAT_TYPE_NAME", columnDefinition = "NVARCHAR(255)")
 	private String formatTypeName;

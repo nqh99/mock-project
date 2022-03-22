@@ -39,16 +39,19 @@
 							</div>
 							<div class="col">
 								<div class="input-group mb-3 mt-3">
-									<span class="input-group-text">Location</span>
-									<select class="form-select" name="inputLocation">
+									<span class="input-group-text">Location</span> <select
+										class="form-select" name="inputLocation">
 										<option value="All" selected>All</option>
+										<option th:each="location : ${listOfLocations}"
+											th:value="${location.locationName}"
+											th:text="${location.locationName}"></option>
 									</select>
 								</div>
 							</div>
 							<div class="col">
 								<div class="input-group mb-3 mt-3">
-									<span class="input-group-text">Type of
-										Dashboard</span> <select class="form-select" name="inputTypeOfDashboard">
+									<span class="input-group-text">Type of Dashboard</span> <select
+										class="form-select" name="inputTypeOfDashboard">
 										<option value="Table" selected>Table</option>
 										<option value="Chart" selected>Chart</option>
 									</select>
@@ -56,9 +59,12 @@
 							</div>
 							<div class="col">
 								<div class="input-group mb-3 mt-3">
-									<span class="input-group-text">Status</span>
-									<select class="form-select" name="inputStatus">
+									<span class="input-group-text">Status</span> <select
+										class="form-select" name="inputStatus">
 										<option value="All" selected>All</option>
+										<option th:each="status : ${listOfStatuses}"
+											th:value="${status.statusName}"
+											th:text="${status.statusName}"></option>
 									</select>
 								</div>
 							</div>

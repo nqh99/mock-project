@@ -45,8 +45,8 @@ public class Location extends BaseEntity {
 	@OneToMany(mappedBy = "location")
 	private Set<Candidate> setOfCandidates;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@Column(name = "LOCATION_NAME", columnDefinition = "NVARCHAR(255)")
 	private String locationName;

@@ -38,8 +38,8 @@ public class ClassStatus {
 	@OneToMany(mappedBy = "classStatus")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "CLASS_STATUS_NAME", columnDefinition = "NVARCHAR(255)")
 	private String classStatusName;

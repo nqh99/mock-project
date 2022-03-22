@@ -35,8 +35,8 @@ public class Topic extends BaseEntity{
 	@Column(name = "TOPIC_ID", columnDefinition = "INT")
 	private Integer id;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "FULLNAME", columnDefinition = "NVARCHAR(255)")
 	@NotEmpty(message = "Fullname cannot be empty")

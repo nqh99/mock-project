@@ -48,7 +48,7 @@ public class Offer extends BaseEntity {
 	@Column(name = "OFFER_SALARY", columnDefinition = "INT")
 	private Integer offerSalary;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 }

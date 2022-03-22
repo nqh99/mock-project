@@ -41,8 +41,8 @@ public class Budget extends BaseEntity {
 	@OneToMany(mappedBy = "budget")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "BUDGET_NAME", columnDefinition = "NVARCHAR(255)")
 	private String budgetName;
