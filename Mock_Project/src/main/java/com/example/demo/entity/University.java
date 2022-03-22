@@ -36,8 +36,8 @@ public class University extends BaseEntity {
 	@Column(name = "UNIVERSITY_NAME", columnDefinition = "NVARCHAR(255)")
 	private String universityName;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@OneToMany(mappedBy = "university")
 	private Set<TraineeCandidateProfile> SetOfTraineeCandidateProfiles;

@@ -45,7 +45,7 @@ public class ClassAdmin extends User {
 	@JoinColumn(name = "CLASS_ADMIN_PROFILE_ID")
 	private ClassAdminProfile classAdminProfile;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 }

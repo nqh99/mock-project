@@ -74,8 +74,8 @@ public class TraineeCandidateProfile extends BaseEntity {
 	@NotEmpty(message = "Email cannot be empty")
 	private String email;
 
-	@Column(name = "TYPE", columnDefinition = "INT")
-	private Integer type;
+	@Column(name = "TYPE", columnDefinition = "NVARCHAR(255)")
+	private String type;
 
 	@Column(name = "SKILL", columnDefinition = "NVARCHAR(255)")
 	private String skill;
@@ -92,7 +92,7 @@ public class TraineeCandidateProfile extends BaseEntity {
 	@Column(name = "ALLOCATION_STATUS", columnDefinition = "INT")
 	private Integer allocationStatus;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 }

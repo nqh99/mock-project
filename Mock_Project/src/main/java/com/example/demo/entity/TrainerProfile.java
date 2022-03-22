@@ -68,8 +68,8 @@ public class TrainerProfile extends BaseEntity {
 	@Range(min = 0, message = "Major cannot be empty")
 	private Integer experience;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@OneToOne(mappedBy = "trainerProfile")
 	private Trainer trainer;

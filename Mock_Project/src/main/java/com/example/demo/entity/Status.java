@@ -41,8 +41,8 @@ public class Status extends BaseEntity {
 	@OneToMany(mappedBy = "status")
 	private Set<Trainee> setOfTrainees;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@Column(name = "STATUS_NAME", columnDefinition = "NVARCHAR(255)")
 	private String statusName;

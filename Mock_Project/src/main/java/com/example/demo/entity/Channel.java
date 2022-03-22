@@ -36,8 +36,8 @@ public class Channel extends BaseEntity {
 	@JoinColumn(name = "CANDIDATE_ID")
 	private Candidate candidate;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "CHANNEL_NAME", columnDefinition = "NVARCHAR(255)")
 	private String channelName;

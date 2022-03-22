@@ -51,7 +51,7 @@ public class GPA extends BaseEntity {
 	@Column(name = "GPA_RESULT", columnDefinition = "INT")
 	private Integer gpaResult;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 }

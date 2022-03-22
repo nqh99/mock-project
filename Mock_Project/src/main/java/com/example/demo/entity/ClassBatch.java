@@ -140,8 +140,8 @@ public class ClassBatch extends BaseEntity {
 	@Column(name = "STATUS", columnDefinition = "NVARCHAR(255)")
 	private String status;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "HISTORY", columnDefinition = "NVARCHAR(255)")
 	private String history;

@@ -36,7 +36,7 @@ public class AllowanceGroup extends BaseEntity {
 	@JoinColumn(name = "ALLOWANCE_ID")
 	private Allowance allowance;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 }

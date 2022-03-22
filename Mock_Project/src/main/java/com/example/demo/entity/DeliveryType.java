@@ -41,8 +41,8 @@ public class DeliveryType extends BaseEntity {
 	@OneToMany(mappedBy = "deliveryType")
 	private Set<ClassBatch> setOfClassBatches;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@Column(name = "DELIVERY_TYPE_NAME", columnDefinition = "NVARCHAR(255)")
 	private String deliveryTypeName;

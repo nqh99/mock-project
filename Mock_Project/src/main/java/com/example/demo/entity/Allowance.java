@@ -43,8 +43,8 @@ public class Allowance extends BaseEntity {
 	@Range(min = 0, message = "Allowance result must be greater than 0")
 	private Integer allowanceResult;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@OneToOne(mappedBy = "allowance")
 	private AllowanceGroup allowanceGroup;

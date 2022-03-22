@@ -60,8 +60,8 @@ public class EntryTest extends BaseEntity {
 	@Column(name = "RESULT", columnDefinition = "INT")
 	private Integer result;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@ManyToOne
 	@JoinColumn(name = "CANDIDATE_ID")

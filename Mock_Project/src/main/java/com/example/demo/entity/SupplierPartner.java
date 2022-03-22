@@ -43,8 +43,8 @@ public class SupplierPartner extends BaseEntity {
 	@OneToMany(mappedBy = "supplierPartner")
 	private Set<ClassBatch> setOfClassBatches;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@Column(name = "SUPPLIER_PARTNER_NAME", columnDefinition = "NVARCHAR(255)")
 	private String supplierPartnerName;

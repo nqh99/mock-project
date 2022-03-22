@@ -43,8 +43,8 @@ public class AttendantStatus extends BaseEntity{
 	@Column(name = "MILESTONES", columnDefinition = "INT")
 	private Integer milestones;
 	
-	@Column(name = "REMAKRS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 	@OneToOne(mappedBy = "attendantStatus")
 	private GPA gpa;

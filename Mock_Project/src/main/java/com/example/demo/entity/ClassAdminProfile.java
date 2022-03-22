@@ -59,8 +59,8 @@ public class ClassAdminProfile extends BaseEntity {
 	@Column(name = "EMAIL", columnDefinition = "NVARCHAR(255)", unique = true)
 	private String email;
 	
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 	
 
 }

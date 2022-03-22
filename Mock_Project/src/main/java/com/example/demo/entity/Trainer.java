@@ -50,8 +50,8 @@ public class Trainer extends User {
 	@Range(min = 0, message = "Trainer type cannot be null or smaller than 0")
 	private Integer type;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TRAINER_PROFILE_ID")

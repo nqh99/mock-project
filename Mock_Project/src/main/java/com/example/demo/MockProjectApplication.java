@@ -143,7 +143,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		trainerProfile.setPhone("0836255955");
 		trainerProfile.setEmail("khoa@gmail.com");
 		trainerProfile.setExperience(3);
-		trainerProfile.setRemarks(1);
+		trainerProfile.setRemarks("demo");
 		
 		trainer.setTrainerProfile(trainerProfile);
 		HibernateValidator.validateEntityAndGetMessage(trainer);
@@ -170,7 +170,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		classAdminProfile.setGender("Female");
 		classAdminProfile.setPhone("0123423732");
 		classAdminProfile.setEmail("adminA@gmail.com");
-		classAdminProfile.setRemarks(123);
+		classAdminProfile.setRemarks("demo");
 		
 		admin.setClassAdminProfile(classAdminProfile);
 		HibernateValidator.validateEntityAndGetMessage(admin);

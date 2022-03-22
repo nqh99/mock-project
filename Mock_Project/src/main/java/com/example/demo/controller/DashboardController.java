@@ -36,7 +36,9 @@ public class DashboardController {
 		List<ClassStatus> listOfClassStatuses = classStatusRepository.findAll();
 		List<Status> listOfStatuses = statusRepository.findAll();
 		
-		model.addAttribute(errorString, listOfStatuses);
+		model.addAttribute("listOfStatuses", listOfStatuses);
+		model.addAttribute("listOfLocations", listOfLocations);
+		model.addAttribute("listOfClassStatuses", listOfClassStatuses);
 		
 		
 		model.addAttribute("errorString", errorString);
