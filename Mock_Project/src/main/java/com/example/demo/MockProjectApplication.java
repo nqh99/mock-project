@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.example.demo.entity.Budget;
 import com.example.demo.entity.ClassAdmin;
 import com.example.demo.entity.ClassAdminProfile;
+import com.example.demo.entity.ClassBatch;
 import com.example.demo.entity.ClassStatus;
 import com.example.demo.entity.DeliveryManager;
 import com.example.demo.entity.DeliveryType;
@@ -30,6 +31,7 @@ import com.example.demo.entity.User;
 import com.example.demo.repository.BudgetRepository;
 import com.example.demo.repository.ClassAdminProfileRepository;
 import com.example.demo.repository.ClassAdminRepository;
+import com.example.demo.repository.ClassBatchRepository;
 import com.example.demo.repository.ClassStatusRepository;
 import com.example.demo.repository.DeliveryTypeRepository;
 import com.example.demo.repository.FormatTypeRepository;
@@ -90,6 +92,9 @@ public class MockProjectApplication  implements CommandLineRunner{
 	
 	@Autowired
 	LocationRepository locationRepository;
+	
+	@Autowired
+	ClassBatchRepository classBatchRepository;
 	
 	@Autowired
 	UserService userService;
@@ -300,6 +305,59 @@ public class MockProjectApplication  implements CommandLineRunner{
 		locationRepository.save(new Location("Thu Duc"));
 		locationRepository.save(new Location("Cu Chi"));
 		locationRepository.save(new Location("Can Gio"));
+		
+		ClassBatch c1 = new ClassBatch();
+		c1.setClassName("Fresher Developer Java");
+		c1.setClassCode("HCM_FR_Java_18_01");
+		c1.setActualStartDate(DateUtils.parseDateFromString("2022-03-03"));
+		c1.setActualEndDate(DateUtils.parseDateFromString("2023-04-5"));
+		c1.setLocation(locationRepository.findByLocationName("District 1"));
+		c1.setClassStatus(classStatusRepository.findByClassStatusName("Planned"));
+		
+		ClassBatch c2 = new ClassBatch();
+		c2.setClassName("Fresher Developer C#");
+		c2.setClassCode("HCM_FR_C#_04_03");
+		c2.setActualStartDate(DateUtils.parseDateFromString("2022-04-03"));
+		c2.setActualEndDate(DateUtils.parseDateFromString("2023-04-01"));
+		c2.setLocation(locationRepository.findByLocationName("District 5"));
+		c2.setClassStatus(classStatusRepository.findByClassStatusName("In-progress"));
+		
+		ClassBatch c3 = new ClassBatch();
+		c3.setClassName("Fresher Developer HTML");
+		c3.setClassCode("HCM_FR_HTML_09_03");
+		c3.setActualStartDate(DateUtils.parseDateFromString("2022-09-03"));
+		c3.setActualEndDate(DateUtils.parseDateFromString("2022-09-01"));
+		c3.setLocation(locationRepository.findByLocationName("Thu Duc"));
+		c3.setClassStatus(classStatusRepository.findByClassStatusName("Draft"));
+		
+		ClassBatch c4 = new ClassBatch();
+		c4.setClassName("Fresher Developer C");
+		c4.setClassCode("HCM_FR_C_11_03");
+		c4.setActualStartDate(DateUtils.parseDateFromString("2022-11-03"));
+		c4.setActualEndDate(DateUtils.parseDateFromString("2022-08-05"));
+		c4.setLocation(locationRepository.findByLocationName("Cu Chi"));
+		c4.setClassStatus(classStatusRepository.findByClassStatusName("Draft"));
+		
+		ClassBatch c5 = new ClassBatch();
+		c5.setClassName("Fresher Developer SQL");
+		c5.setClassCode("HCM_FR_SQL_15_04");
+		c5.setActualStartDate(DateUtils.parseDateFromString("2022-11-04"));
+		c5.setActualEndDate(DateUtils.parseDateFromString("2022-08-05"));
+		c5.setLocation(locationRepository.findByLocationName("District 3"));
+		c5.setClassStatus(classStatusRepository.findByClassStatusName("Rejected"));
+		
+		
+		
+		classBatchRepository.save(c1);
+		classBatchRepository.save(c2);
+		classBatchRepository.save(c3);
+		classBatchRepository.save(c4);
+		classBatchRepository.save(c5);
+		for (ClassBatch clazz : classBatchRepository.findAll()) {
+			System.out.println(clazz.getClassCode());
+		}
+		
+		
 		
 	}
 	
