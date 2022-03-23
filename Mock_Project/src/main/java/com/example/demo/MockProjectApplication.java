@@ -346,8 +346,6 @@ public class MockProjectApplication  implements CommandLineRunner{
 		c5.setLocation(locationRepository.findByLocationName("District 3"));
 		c5.setClassStatus(classStatusRepository.findByClassStatusName("Rejected"));
 		
-		
-		
 		classBatchRepository.save(c1);
 		classBatchRepository.save(c2);
 		classBatchRepository.save(c3);
