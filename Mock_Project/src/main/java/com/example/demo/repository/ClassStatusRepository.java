@@ -7,5 +7,5 @@ import com.example.demo.entity.ClassStatus;
 
 @Repository
 public interface ClassStatusRepository extends JpaRepository<ClassStatus, Integer> {
-
+	ClassStatus findByClassStatusName(String classStatusName);
 }

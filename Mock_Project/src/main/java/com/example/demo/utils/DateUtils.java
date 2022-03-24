@@ -23,6 +23,21 @@ public class DateUtils {
 		}
 	}
 	
+	public static Date parseDDMMYYYYDateFromString(String dateString) {
+		String pattern = "dd/MM/yyyy";
+//		String pattern = "ddd-MMM-YYYY HH:mm aa";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date date = null;
+		try {
+			date = simpleDateFormat.parse(dateString);
+			return date;
+		} catch (ParseException e) {
+			System.out.println("Cannot parse date");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static String formatDate(Date inputDate) {
 		String pattern = "yyyy-MM-dd";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);

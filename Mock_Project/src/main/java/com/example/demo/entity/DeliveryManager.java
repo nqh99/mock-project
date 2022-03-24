@@ -32,5 +32,8 @@ public class DeliveryManager extends User {
 
 	@Column(name = "FULLNAME", columnDefinition = "NVARCHAR(255)")
 	private String fullName;
+	
+	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
+	private String account;
 
 }

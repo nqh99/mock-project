@@ -45,6 +45,9 @@ public class TraineeCandidateProfile extends BaseEntity {
 
 	@Column(name = "FULLNAME", columnDefinition = "NVARCHAR(255)")
 	private String fullName;
+	
+	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
+	private String account;
 
 	@Temporal(TemporalType.DATE)
 	@PastOrPresent(message = "Birthdate cannot be in the future")

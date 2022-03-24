@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(exclude = { "setOfTrainees", "setOfTrainers", "audit"}, callSuper = false)
-@EqualsAndHashCode(exclude = { "setOfTrainees", "setOfTrainers", "audit"}, callSuper = false)
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "CLASS_BATCH")
 public class ClassBatch extends BaseEntity {
@@ -145,6 +146,24 @@ public class ClassBatch extends BaseEntity {
 	
 	@Column(name = "HISTORY", columnDefinition = "NVARCHAR(255)")
 	private String history;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClassBatch other = (ClassBatch) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 	
 
+	
 }

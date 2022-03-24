@@ -18,8 +18,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "setOfClassBatches", "candidate" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "setOfClassBatches", "candidate" }, callSuper = false)
+@ToString(exclude = { "setOfClassBatches", "setOfCandidates" }, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfClassBatches", "setOfCandidates" }, callSuper = false)
 @Entity
 @Table(name = "LOCATION")
 public class Location extends BaseEntity {
@@ -51,7 +51,7 @@ public class Location extends BaseEntity {
 	@Column(name = "LOCATION_NAME", columnDefinition = "NVARCHAR(255)")
 	private String locationName;
 
-	@OneToOne(mappedBy = "location")
-	private Candidate candidate;
+//	@OneToOne(mappedBy = "location")
+//	private Candidate candidate;
 
 }
