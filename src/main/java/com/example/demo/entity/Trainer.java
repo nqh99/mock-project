@@ -26,10 +26,10 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(exclude = { "trainerProfile", "setOfClassBatches", "setOfInterviews", "setOfInterviewValuations",
-		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests", "setOfAuditsRelatedTo" })
+		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests", "setOfAuditsRelatedTo", "setOfMasterClassBatches" })
 @EqualsAndHashCode(exclude = { "trainerProfile", "setOfClassBatches", "setOfInterviews", "setOfInterviewValuations",
 		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests",
-		"setOfAuditsRelatedTo" }, callSuper = false)
+		"setOfAuditsRelatedTo" , "setOfMasterClassBatches"}, callSuper = false)
 @Entity
 @Table(name = "TRAINER")
 @NamedNativeQueries({
