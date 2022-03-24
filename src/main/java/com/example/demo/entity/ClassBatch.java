@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -90,7 +91,7 @@ public class ClassBatch extends BaseEntity {
 	@JoinColumn(name = "AUDIT_ID")
 	private Audit audit;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "CLASS_ADMIN_ID")
 	private ClassAdmin classAdmin;
 	
@@ -125,15 +126,15 @@ public class ClassBatch extends BaseEntity {
 	@Column(name = "ACTUAL_TRAINEE_NUMBER", columnDefinition = "INT")
 	private Integer actualTraineeNumber;
 	
-	@OneToMany(mappedBy = "classBatch")
+	@ManyToMany(mappedBy = "setOfClassBatches")
 	private Set<Trainer> setOfTrainers;
+	
+	@ManyToOne
+	@JoinColumn(name = "MASTER_TRAINER_ID")
+	private Trainer masterTrainer;
 	
 	@Column(name = "MILESTONES", columnDefinition = "INT")
 	private Integer milestones;
-	
-	//De luu dia chi cua curriculum va dem len front end sau do
-	@Column(name = "CURRICULUM", columnDefinition = "NVARCHAR(MAX)")
-	private String curriculum;
 	
 	@OneToMany(mappedBy = "classBatch")
 	private Set<Trainee> setOfTrainees;
@@ -147,8 +148,13 @@ public class ClassBatch extends BaseEntity {
 	@Column(name = "HISTORY", columnDefinition = "NVARCHAR(255)")
 	private String history;
 	
-	@Column(name = "LEARNING_PATH", columnDefinition = "NVARCHAR(MAX)")
-	private String learningPathFile;
+	@ManyToOne
+	@JoinColumn(name = "LEARNING_PATH_ID")
+	private LearningPath learningPath;
+	
+	@Column(name = "CURRICULUM", columnDefinition = "NVARCHAR(MAX)")
+	private String curriculum;
+	
 
 	@Override
 	public boolean equals(Object obj) {

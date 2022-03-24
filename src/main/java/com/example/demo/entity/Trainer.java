@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
@@ -24,9 +25,9 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "trainerProfile", "classBatch", "setOfInterviews", "setOfInterviewValuations",
+@ToString(exclude = { "trainerProfile", "setOfClassBatches", "setOfInterviews", "setOfInterviewValuations",
 		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests", "setOfAuditsRelatedTo" })
-@EqualsAndHashCode(exclude = { "trainerProfile", "classBatch", "setOfInterviews", "setOfInterviewValuations",
+@EqualsAndHashCode(exclude = { "trainerProfile", "setOfClassBatches", "setOfInterviews", "setOfInterviewValuations",
 		"setOfAuditsInCharge", "setOfTechnicalEntryTests", "setOfLanguageEntryTests",
 		"setOfAuditsRelatedTo" }, callSuper = false)
 @Entity
@@ -57,9 +58,11 @@ public class Trainer extends User {
 	@JoinColumn(name = "TRAINER_PROFILE_ID")
 	private TrainerProfile trainerProfile;
 
-	@ManyToOne
-	@JoinColumn(name = "CLASS_BATCH_ID")
-	private ClassBatch classBatch;
+	@ManyToMany
+	private Set<ClassBatch> setOfClassBatches;
+	
+	@OneToMany(mappedBy = "masterTrainer")
+	private Set<ClassBatch> setOfMasterClassBatches;
 
 	@OneToMany(mappedBy = "interviewer")
 	private Set<Interview> setOfInterviews;

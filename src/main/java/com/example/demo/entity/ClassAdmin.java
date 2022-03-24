@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,8 +22,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "classBatch", "classAdminProfile" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "classBatch", "classAdminProfile" }, callSuper = false)
+@ToString(exclude = { "setOfClassBatches", "classAdminProfile" }, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfClassBatches", "classAdminProfile" }, callSuper = false)
 @Entity
 @Table(name = "CLASS_ADMIN")
 @NamedNativeQueries({
@@ -38,8 +41,8 @@ public class ClassAdmin extends User {
 	@Column(name = "CLASS_ADMIN_ID", columnDefinition = "INT")
 	private Integer id;
 
-	@OneToOne(mappedBy = "classAdmin")
-	private ClassBatch classBatch;
+	@OneToMany(mappedBy = "classAdmin")
+	private Set<ClassBatch> setOfClassBatches;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CLASS_ADMIN_PROFILE_ID")
