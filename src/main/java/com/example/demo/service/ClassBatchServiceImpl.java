@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -9,10 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.ClassBatch;
@@ -27,26 +22,7 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 	@Autowired
 	ClassBatchRepository classBatchRepository;
 
-	public Page<ClassBatch> findPaginated(List<ClassBatch> listOfClassBatches, Pageable pageable) {
-		Integer pageSize = pageable.getPageSize();
-		Integer currentPage = pageable.getPageNumber();
-		Integer startItem = currentPage * pageSize;
-
-		List<ClassBatch> pagedList;
-
-		if (listOfClassBatches.size() < startItem) {
-			pagedList = Collections.emptyList();
-		} else {
-			Integer toIndex = Math.min(startItem + pageSize, listOfClassBatches.size());
-			pagedList = listOfClassBatches.subList(startItem, toIndex);
-		}
-
-		Page<ClassBatch> classBatchPage = new PageImpl<ClassBatch>(pagedList, PageRequest.of(currentPage, pageSize),
-				listOfClassBatches.size());
-
-		return classBatchPage;
-	}
-
+	@Override
 	public List<ClassBatch> filterSearchCriteria(ClassBatchCriteriaModel classBatchCriteriaModel) {
 		Date toDate = null;
 		Date fromDate = null;
@@ -96,9 +72,13 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 			listOfMatchedClassName = classBatchRepository.findAllByClassName(classBatchCriteriaModel.getClassName());
 		}
 
-		Set<ClassBatch> searchResult = listOfAllClassBatches.stream().distinct().filter(listOfMatchedLocation::contains)
-				.filter(listOfMatchedClassStatus::contains).filter(listOfMatchedDate::contains)
-				.filter(listOfMatchedClassName::contains).collect(Collectors.toSet());
+		Set<ClassBatch> searchResult = listOfAllClassBatches.stream()
+				.distinct()
+				.filter(listOfMatchedLocation::contains)
+				.filter(listOfMatchedClassStatus::contains)
+				.filter(listOfMatchedDate::contains)
+				.filter(listOfMatchedClassName::contains)
+				.collect(Collectors.toSet());
 
 		return new ArrayList<ClassBatch>(searchResult);
 	}
