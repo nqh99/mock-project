@@ -19,8 +19,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "setOfLearningPaths" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "setOfLearningPaths" }, callSuper = false)
+@ToString(exclude = { "setOfMilestoneConfigurations" }, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfMilestoneConfigurations" }, callSuper = false)
 @Entity
 @Table(name = "TOPIC")
 public class Topic extends BaseEntity{
@@ -43,7 +43,7 @@ public class Topic extends BaseEntity{
 	private String topicName;
 	
 	@OneToMany(mappedBy = "topic")
-	private Set<LearningPath> setOfLearningPaths;
+	private Set<MilestoneConfiguration> setOfMilestoneConfigurations;
 	
 	
 

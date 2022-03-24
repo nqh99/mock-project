@@ -1,12 +1,13 @@
 package com.example.demo.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,8 +17,8 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "topic", "trainee" }, callSuper = false)
-@EqualsAndHashCode(exclude = { "topic", "trainee" }, callSuper = false)
+@ToString(exclude = { "setOfClassBatches"}, callSuper = false)
+@EqualsAndHashCode(exclude = { "setOfClassBatches"}, callSuper = false)
 @Entity
 @Table(name = "LEARNING_PATH")
 public class LearningPath extends BaseEntity{
@@ -32,12 +33,16 @@ public class LearningPath extends BaseEntity{
 	@Column(name = "LEARNING_PATH_ID", columnDefinition = "INT")
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "TOPIC_ID")
-	private Topic topic;
+	@Column(name = "LEARNING_PATH_NAME", columnDefinition = "NVARCHAR(255)")
+	private String learningPathName;
 	
-	@ManyToOne
-	@JoinColumn(name = "TRAINEE_CANDIDATE_ID")
-	private Trainee trainee;
+	@Column(name = "DETAILED_INFORMATION", columnDefinition = "NVARCHAR(255)")
+	private String detailedInformation;
+	
+	@Column(name = "FILE_ADDRESS", columnDefinition = "NVARCHAR(MAX)")
+	private String learningPathFileAddress;
+	
+	@OneToMany(mappedBy = "learningPath")
+	private Set<ClassBatch> setOfClassBatches;
 
 }

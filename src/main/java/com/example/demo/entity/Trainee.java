@@ -20,9 +20,9 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "setOfLearningPaths", "setOfAllowances", "status", "setOfGPAs",
+@ToString(exclude = { "setOfMilestoneConfigurations", "setOfAllowances", "status", "setOfGPAs",
 		"setOfRewardPenalties", "setOfGuarantees", "setOfInterviewValuations" })
-@EqualsAndHashCode(exclude = { "setOfLearningPaths", "setOfAllowances", "status", "setOfGPAs",
+@EqualsAndHashCode(exclude = { "setOfMilestoneConfigurations", "setOfAllowances", "status", "setOfGPAs",
 		"setOfRewardPenalties", "setOfGuarantees", "setOfInterviewValuations" }, callSuper = false)
 @Entity
 @Table(name = "TRAINEE")
@@ -38,11 +38,11 @@ public class Trainee extends BaseEntity {
 	@Column(name = "TRAINEE_CANDIDATE_ID", columnDefinition = "INT")
 	private Integer id;
 
-	@Column(name = "REMARKS", columnDefinition = "INT")
-	private Integer remarks;
+	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
+	private String remarks;
 
 	@OneToMany(mappedBy = "trainee")
-	private Set<LearningPath> setOfLearningPaths;
+	private Set<MilestoneConfiguration> setOfMilestoneConfigurations;
 
 	@OneToMany(mappedBy = "trainee")
 	private Set<Allowance> setOfAllowances;
