@@ -146,6 +146,9 @@ public class ClassBatch extends BaseEntity {
 	
 	@Column(name = "HISTORY", columnDefinition = "NVARCHAR(255)")
 	private String history;
+	
+	@Column(name = "LEARNING_PATH", columnDefinition = "NVARCHAR(MAX)")
+	private String learningPathFile;
 
 	@Override
 	public boolean equals(Object obj) {

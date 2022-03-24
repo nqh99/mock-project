@@ -44,8 +44,8 @@ public class Audit extends BaseEntity {
 	@Column(name = "DATE")
 	private Date date;
 
-	@Column(name = "EVENT_CATEGORY", columnDefinition = "INT")
-	private Integer eventCategoty;
+	@Column(name = "EVENT_CATEGORY", columnDefinition = "NVARCHAR(255)")
+	private String eventCategoty;
 
 	@ManyToOne
 	@JoinColumn(name = "RELATED_PARTY_PEOPLE_ID")
