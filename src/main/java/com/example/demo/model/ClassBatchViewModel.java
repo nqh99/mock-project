@@ -2,6 +2,11 @@ package com.example.demo.model;
 
 import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.example.demo.entity.BaseEntity;
 
 import lombok.Data;
@@ -22,8 +27,14 @@ public class ClassBatchViewModel extends BaseEntity {
 	private Integer plannedTraineeNo;
 	private Integer acceptedTraineeNo;
 	private Integer actualTraineeNo;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="dd-MMM-YYYY")
 	private Date expectedStartDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="dd-MMM-YYYY")
 	private Date expectedEndDate;
+	
 	private String locationName;
 	private String detailedLocation;
 	private String budgetCode;
@@ -37,8 +48,14 @@ public class ClassBatchViewModel extends BaseEntity {
 	private String formatType;
 	private String scope;
 	private String supplierPartner;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="dd-MMM-YYYY")
 	private Date actualStartDate;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="dd-MMM-YYYY")
 	private Date actualEndDate;
+	
 	private String masterTrainer;
 	private String trainers;
 	private String curriculumFileAddress;
@@ -53,7 +70,11 @@ public class ClassBatchViewModel extends BaseEntity {
 	private Integer tax;
 	private Integer sum;
 	private String budgetNote;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat (pattern="dd-MMM-YYYY")
 	private Date auditDate;
+	
 	private String eventCategory;
 	private String relatedPeople;
 	private String action;

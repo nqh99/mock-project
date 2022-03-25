@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import com.example.demo.entity.ClassBatch;
 import com.example.demo.model.ClassBatchCriteriaModel;
 import com.example.demo.model.ClassBatchViewModel;
 import com.example.demo.repository.ClassBatchRepository;
+import com.example.demo.repository.ClassStatusRepository;
 import com.example.demo.utils.DateUtils;
 import com.example.demo.utils.StringValidateUtils;
 
@@ -22,6 +24,9 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 
 	@Autowired
 	ClassBatchRepository classBatchRepository;
+
+	@Autowired
+	ClassStatusRepository classStatusRepository;
 
 	@Override
 	public List<ClassBatch> filterSearchCriteria(ClassBatchCriteriaModel classBatchCriteriaModel) {
@@ -73,18 +78,65 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 			listOfMatchedClassName = classBatchRepository.findAllByClassName(classBatchCriteriaModel.getClassName());
 		}
 
-		Set<ClassBatch> searchResult = listOfAllClassBatches.stream()
-				.distinct()
-				.filter(listOfMatchedLocation::contains)
-				.filter(listOfMatchedClassStatus::contains)
-				.filter(listOfMatchedDate::contains)
-				.filter(listOfMatchedClassName::contains)
-				.collect(Collectors.toSet());
+		Set<ClassBatch> searchResult = listOfAllClassBatches.stream().distinct().filter(listOfMatchedLocation::contains)
+				.filter(listOfMatchedClassStatus::contains).filter(listOfMatchedDate::contains)
+				.filter(listOfMatchedClassName::contains).collect(Collectors.toSet());
 
 		return new ArrayList<ClassBatch>(searchResult);
 	}
-	
-	public ClassBatchViewModel convertToViewModel (ClassBatch b) {
+
+	public boolean changeClassProgression(String classBatchId, List<String> requiredStatuses, String newStatus,
+			String userFullName, String completeMessage) {
+
+		ClassBatch classBatch = classBatchRepository.findById(Integer.valueOf(classBatchId)).get();
+		for (String status : requiredStatuses) {
+			if (Objects.equals(classBatch.getClassStatus().getClassStatusName(), status)) {
+				classBatch.setClassStatus(classStatusRepository.findByClassStatusName(newStatus));
+				classBatch.setHistory(String.valueOf(new Date()) + " - " + completeMessage + " by " + userFullName);
+				if (Objects.equals(completeMessage, "Started")) {
+					classBatch.setActualStartDate(new Date());
+					System.out
+							.println("Set class's actual start date to " + classBatch.getActualStartDate().toString());
+				}
+				if (Objects.equals(completeMessage, "Finished")) {
+					classBatch.setActualEndDate(new Date());
+					System.out.println("Set class's actual end date to " + classBatch.getActualEndDate().toString());
+				}
+				classBatchRepository.save(classBatch);
+				System.out.println("Class " + classBatch.getClassCode() + completeMessage + " by " + userFullName);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean changeClassProgression(String classBatchId, List<String> requiredStatuses, String newStatus,
+			String userFullName, String completeMessage, String remarksContent) {
+
+		ClassBatch classBatch = classBatchRepository.findById(Integer.valueOf(classBatchId)).get();
+		for (String status : requiredStatuses) {
+			if (Objects.equals(classBatch.getClassStatus().getClassStatusName(), status)) {
+				classBatch.setClassStatus(classStatusRepository.findByClassStatusName(newStatus));
+				classBatch.setHistory(String.valueOf(new Date()) + " - " + completeMessage + " by " + userFullName
+						+ " - " + remarksContent);
+				if (Objects.equals(completeMessage, "Started")) {
+					classBatch.setActualStartDate(new Date());
+					System.out
+							.println("Set class's actual start date to " + classBatch.getActualStartDate().toString());
+				}
+				if (Objects.equals(completeMessage, "Finished")) {
+					classBatch.setActualEndDate(new Date());
+					System.out.println("Set class's actual end date to " + classBatch.getActualEndDate().toString());
+				}
+				classBatchRepository.save(classBatch);
+				System.out.println("Class " + classBatch.getClassCode() + completeMessage + " by " + userFullName);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public ClassBatchViewModel convertToViewModel(ClassBatch b) {
 		ClassBatchViewModel a = new ClassBatchViewModel();
 		a.setId(b.getId());
 		a.setClassCode(b.getClassCode());
@@ -95,18 +147,18 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 		a.setActualTraineeNo(b.getActualTraineeNumber());
 		a.setExpectedStartDate(b.getExpectedStartDate());
 		a.setExpectedEndDate(b.getExpectedEndDate());
+		a.setActualStartDate(b.getActualStartDate());
+		a.setActualEndDate(b.getActualEndDate());
 		a.setLocationName(b.getLocation().getLocationName());
 		a.setDetailedLocation(b.getDetailLocation());
 		a.setBudgetCode(b.getBudget().getBudgetName());
 		a.setEstimatedBudget(b.getEstimatedBudget());
 		a.setClassAdmin(b.getClassAdmin().getAccount());
-		
-		
+
 		a.setHistory(b.getHistory());
-		
-		
+
 		return a;
-		
+
 	}
 
 }
