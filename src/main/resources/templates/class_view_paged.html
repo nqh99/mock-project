@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,9 +78,10 @@
 						<div class="tab-pane fade show active" id="home" role="tabpanel"
 							aria-labelledby="home-tab">
 							<div class="mt-3">
-							<p th:if="${resultString!=null}" style="color: green;"
-												th:utext="${resultString}"></p>
-								<form th:object="${classBatchViewModel}" method="POST" th:action="@{class_view}">
+								<p th:if="${resultString!=null}" style="color: green;"
+									th:utext="${resultString}"></p>
+								<form th:object="${classBatchViewModel}" method="POST"
+									th:action="@{class_view}">
 									<div class="row">
 										<a class="button btn btn-info col-sm-12"
 											data-bs-toggle="collapse" data-bs-target="#collapse1"
@@ -553,14 +555,16 @@
 									<!-- Button group -->
 									<div class="row mt-3 mb-3">
 										<div class="mb-2 row col-10">
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1">
 												<div class="row">
 													<i class="bi bi-arrow-up-circle-fill text-info col-sm-1"></i>
 													<span class="col">Update Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#submitClassModal">
 												<div class="row">
@@ -568,7 +572,8 @@
 													<span class="col">Submit Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#startClassModal">
 												<div class="row">
@@ -576,7 +581,8 @@
 														class="col">Start Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#finishClassModal">
 												<div class="row">
@@ -585,6 +591,7 @@
 												</div>
 											</button>
 											<button type="button"
+												th:onclick="|window.location.href='class_management'|"
 												class="btn btn-outline-secondary col-sm-2 me-1">
 												<div class="row">
 													<i class="bi bi-arrow-90deg-left text-danger col-sm-1"></i>
@@ -593,7 +600,8 @@
 											</button>
 										</div>
 										<div class="mb-2 row col-10">
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#cancelClassModal">
 												<div class="row">
@@ -601,7 +609,8 @@
 														class="col">Cancel Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#approveClassModal">
 												<div class="row">
@@ -609,16 +618,17 @@
 													<span class="col">Approve Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#rejectClassModal">
 												<div class="row">
-													<i
-														class="bi bi-hand-thumbs-down-fill text-secondary col-sm-1"></i>
+													<i class="bi bi-hand-thumbs-down-fill col-sm-1"></i>
 													<span class="col">Reject Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#closeClassModal">
 												<div class="row">
@@ -626,7 +636,8 @@
 													<span class="col">Close Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal"
 												data-bs-target="#requestInfoClassModal">
@@ -637,7 +648,8 @@
 											</button>
 										</div>
 										<div class="mb-2 row col-10">
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER')"
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#acceptClassModal">
 												<div class="row">
@@ -645,8 +657,9 @@
 													<span class="col">Accept Class</span>
 												</div>
 											</button>
-											<button type="button" sec:authorize="hasAnyRole('FA_MANAGER')"
-												class="btn btn-outline-secondary col-sm-2 me-1" 
+											<button type="button"
+												sec:authorize="hasAnyRole('FA_MANAGER')"
+												class="btn btn-outline-secondary col-sm-2 me-1"
 												data-bs-toggle="modal" data-bs-target="#declineClassModal">
 												<div class="row">
 													<i class="bi bi-hand-thumbs-down text-danger col-sm-1"></i>
@@ -657,6 +670,7 @@
 
 										<!-- end of button group -->
 
+										<!-- 	START OF MODAL -->
 										<!--Submit Modal -->
 										<div class="modal fade" id="submitClassModal" tabindex="-1">
 											<div class="modal-dialog">
@@ -807,68 +821,9 @@
 										</div>
 										<!-- End of approve Modal -->
 
-										<!--reject Modal -->
-										<div class="modal fade" id="rejectClassModal" tabindex="-1">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h6 class="modal-title">Confirm</h6>
-														<button type="button" class="btn-close"
-															data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body text-center">
-														<i class="bi bi-info-circle-fill text-success"></i> Are
-														you sure to reject?
-													</div>
-													<div class="modal-footer">
-														<button type="button" name="buttonType"
-															class="btn btn-primary" data-bs-toggle="modal"
-															data-bs-target="#rejectReasonModal"
-															data-bs-dismiss="modal">OK</button>
-														<button type="button" class="btn btn-secondary"
-															data-bs-dismiss="modal">Cancel</button>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="modal fade" id="rejectReasonModal" tabindex="-1">
-											<form action="">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h6 class="modal-title">Reason</h6>
-															<button type="button" class="btn-close"
-																data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body text-center">
-															<div class="row">
-																<i
-																	class="bi bi-info-circle-fill text-warning col-1 fs-5">
-																</i><span class="col-5">Please input reason here:</span>
-															</div>
-															<div class="row mt-3 text-center">
-																<div class="col-2">Remarks</div>
-																<div class="col-10">
-																	<input type="text" name="inputRemarks"
-																		class="form-control col" />
-																</div>
-															</div>
-														</div>
-														<div class="modal-footer">
-															<button type="submit" name="rejectClassBatchId"
-																th:value="${classBatchViewModel.id}" class="btn btn-primary"
-																data-bs-toggle="modal"
-																data-bs-target="#rejectReasonModal"
-																th:formaction="@{/class_reject}">OK</button>
-															<button type="button" class="btn btn-secondary"
-																data-bs-dismiss="modal">Cancel</button>
-														</div>
-													</div>
-												</div>
-											</form>
-										</div>
-										<!-- End of reject Modal -->
+										<!-- DUMMY FORM -->
+										<form></form>
+										<!-- DUMMY FORM-->
 
 										<!--request Info Modal -->
 										<div class="modal fade" id="requestInfoClassModal"
@@ -898,7 +853,7 @@
 
 										<div class="modal fade" id="requestInfoReasonModal"
 											tabindex="-1">
-											<form action="">
+											<form method="POST" th:action="@{class_requestInfo}">
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -922,8 +877,8 @@
 														</div>
 														<div class="modal-footer">
 															<button type="submit" name="requestInfoClassBatchId"
-																th:value="${classBatchViewModel.id}" class="btn btn-primary"
-																data-bs-toggle="modal"
+																th:value="${classBatchViewModel.id}"
+																class="btn btn-primary" data-bs-toggle="modal"
 																data-bs-target="#requestInfoReasonModal"
 																th:formaction="@{/class_requestInfo}">OK</button>
 															<button type="button" class="btn btn-secondary"
@@ -986,7 +941,7 @@
 										</div>
 
 										<div class="modal fade" id="declineReasonModal" tabindex="-1">
-											<form action="">
+											<form method="POST" th:action="@{class_decline}">
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -1010,8 +965,8 @@
 														</div>
 														<div class="modal-footer">
 															<button type="submit" name="declineClassBatchId"
-																th:value="${classBatchViewModel.id}" class="btn btn-primary"
-																data-bs-toggle="modal"
+																th:value="${classBatchViewModel.id}"
+																class="btn btn-primary" data-bs-toggle="modal"
 																data-bs-target="#declineReasonModal"
 																th:formaction="@{/class_decline}">OK</button>
 															<button type="button" class="btn btn-secondary"
@@ -1022,6 +977,71 @@
 											</form>
 										</div>
 										<!-- End of decline Modal -->
+
+										<!--reject Modal -->
+										<div class="modal fade" id="rejectClassModal" tabindex="-1">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h6 class="modal-title">Confirm</h6>
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body text-center">
+														<i class="bi bi-info-circle-fill text-success"></i> Are
+														you sure to reject?
+													</div>
+													<div class="modal-footer">
+														<button type="button" name="buttonType"
+															class="btn btn-primary" data-bs-toggle="modal"
+															data-bs-target="#rejectReasonModal"
+															data-bs-dismiss="modal">OK</button>
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Cancel</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="modal fade" id="rejectReasonModal" tabindex="-1">
+											<form method="POST" th:action="@{class_reject}">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h6 class="modal-title">Reason</h6>
+															<button type="button" class="btn-close"
+																data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<div class="modal-body text-center">
+															<div class="row">
+																<i
+																	class="bi bi-info-circle-fill text-warning col-1 fs-5">
+																</i><span class="col-5">Please input reason here:</span>
+															</div>
+															<div class="row mt-3 text-center">
+																<div class="col-2">Remarks</div>
+																<div class="col-10">
+																	<input type="text" name="inputRemarks"
+																		class="form-control col" />
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="submit" name="rejectClassBatchId"
+																th:value="${classBatchViewModel.id}"
+																class="btn btn-primary" data-bs-toggle="modal"
+																data-bs-target="#rejectReasonModal"
+																th:formaction="@{/class_reject}">OK</button>
+															<button type="button" class="btn btn-secondary"
+																data-bs-dismiss="modal">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										<!-- End of reject Modal -->
+										<!--  	END OF MODAL -->
+
 									</div>
 									<!-- end form 4 -->
 								</form>
@@ -1337,8 +1357,8 @@
 				format : 'dd/mm/yyyy'
 			});
 			$("#dobDatepicker").datepicker({
-		        format: "dd/mm/yyyy",
-		      });
+				format : "dd/mm/yyyy",
+			});
 		});
 	</script>
 </body>

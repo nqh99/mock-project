@@ -230,7 +230,6 @@ public class MockProjectApplication  implements CommandLineRunner{
 		userService.save(deliManager, "123", listOfRole5);
 		System.out.println("created Delivery manager: " + deliManager.toString());
 		
-		
 		//Tao cac entity lien quan den ClassBatch
 		budgetRepository.save(new Budget("CTC_Project_ADP"));
 		budgetRepository.save(new Budget("CTC_Fresher_Allowance"));
@@ -242,6 +241,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		budgetRepository.save(new Budget("CTC_Uni")); 
 		
 		classStatusRepository.save(new ClassStatus("Planned"));
+		classStatusRepository.save(new ClassStatus("Planning"));
 		classStatusRepository.save(new ClassStatus("In-progress"));
 		classStatusRepository.save(new ClassStatus("Pending for review"));
 		classStatusRepository.save(new ClassStatus("Draft"));
@@ -250,6 +250,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		classStatusRepository.save(new ClassStatus("Declined"));
 		classStatusRepository.save(new ClassStatus("Waiting for more information"));
 		classStatusRepository.save(new ClassStatus("Rejected"));
+		classStatusRepository.save(new ClassStatus("Cancelled"));
 		
 		subjectTypeRepository.save(new SubjectType("Organization Overview & Culture"));
 		subjectTypeRepository.save(new SubjectType("Company Process"));
@@ -318,8 +319,6 @@ public class MockProjectApplication  implements CommandLineRunner{
 		c1.setClassAdmin(classAdminRepository.findByUsername("admin"));
 		c1.setExpectedStartDate(DateUtils.parseDateFromString("2022-03-03"));
 		c1.setExpectedEndDate(DateUtils.parseDateFromString("2023-04-5"));
-		c1.setActualStartDate(DateUtils.parseDateFromString("2022-03-03"));
-		c1.setActualEndDate(DateUtils.parseDateFromString("2023-04-5"));
 		c1.setLocation(locationRepository.findByLocationName("District 1"));
 		c1.setClassStatus(classStatusRepository.findByClassStatusName("Draft"));
 		
