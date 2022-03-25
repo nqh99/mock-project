@@ -37,6 +37,9 @@ public class Trainee extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TRAINEE_CANDIDATE_ID", columnDefinition = "INT")
 	private Integer id;
+	
+	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
+	private String account;
 
 	@Column(name = "REMARKS", columnDefinition = "NVARCHAR(255)")
 	private String remarks;

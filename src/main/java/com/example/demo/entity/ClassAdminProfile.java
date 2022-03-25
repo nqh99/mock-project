@@ -44,9 +44,6 @@ public class ClassAdminProfile extends BaseEntity {
 	@NotEmpty(message = "Fullname cannot be empty")
 	private String fullName;
 	
-	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
-	private String account;
-	
 	@Temporal(TemporalType.DATE)
 	@Past(message = "Birthdate cannot be in the future")
 	@Column(name = "DATE_OF_BIRTH")

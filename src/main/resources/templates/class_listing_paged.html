@@ -24,7 +24,7 @@
 </head>
 <body>
 	<th:block th:include="/_nav"></th:block>
-	<main class="row mx-0" style="height: 90vh;">
+	<main class="row mx-0">
 		<th:block th:include="/_sidebar"></th:block>
 		<div class="col">
 			<div class="container">
@@ -109,7 +109,7 @@
 									class="table table-striped table-bordered table-hover header-fixed">
 									<thead>
 										<tr>
-											<th scope="col">Select</th>
+											<th scope="col"><i class="bi bi-square"></i></th>
 											<th scope="col">#</th>
 											<th scope="col">Class Code</th>
 											<th scope="col">Class Name</th>
@@ -124,8 +124,8 @@
 											th:each="classBatch, iStat : ${classBatchPage.content}">
 											<th><input class="form-check-input mt-0" type="radio"
 												name="selectedClassBatch" th:value="${classBatch.id}"></th>
-											<td th:utext="${classBatch.id}">1</td>
-											<td><a class="text-decoration-none" href=""
+											<td th:utext="${iStat.index +1}">1</td>
+											<td><a class="text-decoration-none" th:href="@{class_view?classBatchId={id}(id=${classBatch.id})}"
 												th:utext="${classBatch.classCode}">HN_FR_Java_18_01</a></td>
 											<td th:utext="${classBatch.className}">Fresher Developer
 												Java</td>

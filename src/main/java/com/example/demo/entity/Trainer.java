@@ -46,6 +46,9 @@ public class Trainer extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TRAINER_ID", columnDefinition = "INT")
 	private Integer id;
+	
+	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
+	private String account;
 
 	@Column(name = "TYPE", columnDefinition = "INT")
 	@Range(min = 0, message = "Trainer type cannot be null or smaller than 0")

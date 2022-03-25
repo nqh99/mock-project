@@ -40,6 +40,9 @@ public class ClassAdmin extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CLASS_ADMIN_ID", columnDefinition = "INT")
 	private Integer id;
+	
+	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
+	private String account;
 
 	@OneToMany(mappedBy = "classAdmin")
 	private Set<ClassBatch> setOfClassBatches;

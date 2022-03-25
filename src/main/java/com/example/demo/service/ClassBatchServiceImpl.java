@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.ClassBatch;
 import com.example.demo.model.ClassBatchCriteriaModel;
+import com.example.demo.model.ClassBatchViewModel;
 import com.example.demo.repository.ClassBatchRepository;
 import com.example.demo.utils.DateUtils;
 import com.example.demo.utils.StringValidateUtils;
@@ -81,6 +82,31 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 				.collect(Collectors.toSet());
 
 		return new ArrayList<ClassBatch>(searchResult);
+	}
+	
+	public ClassBatchViewModel convertToViewModel (ClassBatch b) {
+		ClassBatchViewModel a = new ClassBatchViewModel();
+		a.setId(b.getId());
+		a.setClassCode(b.getClassCode());
+		a.setClassName(b.getClassName());
+		a.setClassStatus(b.getClassStatus().getClassStatusName());
+		a.setPlannedTraineeNo(b.getPlannedTraineeNumber());
+		a.setAcceptedTraineeNo(b.getAcceptedTraineeNumber());
+		a.setActualTraineeNo(b.getActualTraineeNumber());
+		a.setExpectedStartDate(b.getExpectedStartDate());
+		a.setExpectedEndDate(b.getExpectedEndDate());
+		a.setLocationName(b.getLocation().getLocationName());
+		a.setDetailedLocation(b.getDetailLocation());
+		a.setBudgetCode(b.getBudget().getBudgetName());
+		a.setEstimatedBudget(b.getEstimatedBudget());
+		a.setClassAdmin(b.getClassAdmin().getAccount());
+		
+		
+		a.setHistory(b.getHistory());
+		
+		
+		return a;
+		
 	}
 
 }

@@ -9,7 +9,7 @@
 		</a>
 		<p class="text-white">
 			Welcome, <a class="text-white" href=""><span
-						th:text="${#authentication.getPrincipal().getUsername()}"></span></a>, <a
+						th:text="${session.userFullName}"></span></a>, <a
 				class="text-white" href="./login.html"><i
 				class="bi bi-box-arrow-right"></i> Logout</a>
 		</p>
