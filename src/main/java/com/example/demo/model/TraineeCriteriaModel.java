@@ -7,21 +7,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ClassBatchCriteriaModel extends BaseEntity {
-	
-	/**
+public class TraineeCriteriaModel extends BaseEntity {/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private String locationName;
 	
-	private String className;
-	
-	private String classStatus;
-	
-	private String fromDate;
-	
-	private String toDate;
+	private String emplId;
+	private String dateOfBirth;
+	private String account;
+	private String name;
+	private String phone;
+	private String email;
 
 }

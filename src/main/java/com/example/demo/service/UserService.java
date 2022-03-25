@@ -58,17 +58,17 @@ public class UserService implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 		
-		if (user instanceof Trainer) {
-			System.out.println("user is a TRAINER");
-		} else if (user instanceof ClassAdmin) {
-			System.out.println("user is an ADMIN");
-		} else if (user instanceof FAManager) {
-			System.out.println("user is a FA MANAGER");
-		} else if (user instanceof FARec) {
-			System.out.println("user is a FA REC");
-		} else if (user instanceof DeliveryManager) {
-			System.out.println("user is a DELIVERY MANAGER");
-		}
+//		if (user instanceof Trainer) {
+//			System.out.println("user is a TRAINER");
+//		} else if (user instanceof ClassAdmin) {
+//			System.out.println("user is an ADMIN");
+//		} else if (user instanceof FAManager) {
+//			System.out.println("user is a FA MANAGER");
+//		} else if (user instanceof FARec) {
+//			System.out.println("user is a FA REC");
+//		} else if (user instanceof DeliveryManager) {
+//			System.out.println("user is a DELIVERY MANAGER");
+//		}
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		for (Role role : user.getSetOfRoles()) {
@@ -87,8 +87,21 @@ public class UserService implements UserDetailsService {
 		}
 		System.out.println("-----------------------------------");
 		
+		String userFullName = null;
 		User sessionUser = userRepository.findByUsername(userDetails.getUsername());
-		System.out.println(sessionUser.getUsername() + " has logged in.");
+		if (sessionUser instanceof Trainer) {
+			userFullName = ((Trainer) sessionUser).getTrainerProfile().getFullName();
+		} else if (sessionUser instanceof ClassAdmin) {
+			userFullName = ((ClassAdmin) sessionUser).getClassAdminProfile().getFullName();
+		} else if (sessionUser instanceof FAManager) {
+			userFullName = ((FAManager) sessionUser).getFullName();
+		} else if (sessionUser instanceof FARec) {
+			userFullName = ((FARec) sessionUser).getFullName();
+		} else if (sessionUser instanceof DeliveryManager) {
+			userFullName = ((DeliveryManager) sessionUser).getFullName();
+		}
+		System.out.println(userFullName + " - " + sessionUser.getUsername() + " has logged in.");
+		session.setAttribute("userFullName", userFullName);
 		WebUtils.storeLoginedUser(session, sessionUser);
 	}
 }

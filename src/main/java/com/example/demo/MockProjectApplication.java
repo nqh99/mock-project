@@ -189,8 +189,9 @@ public class MockProjectApplication  implements CommandLineRunner{
 		System.out.println("CLASS_ADMIN_PROFILE_ADMIN:" + classAdminProfileRepository.findByClassAdmin_IdIs(classAdminRepository.findByUsername("admin").getId()));
 		
 		//Tao FA manager
-		User faManager = new FAManager();
+		FAManager faManager = new FAManager();
 		faManager.setUsername("famanager");
+		faManager.setFullName("Huynh Thi H");
 		
 		List<Role> listOfRole3 = new ArrayList<Role>();
 		listOfRole3.add(roleRepository.findByName("ROLE_USER"));
@@ -204,6 +205,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		//Tao FA Rec
 		FARec faRec = new FARec();
 		faRec.setUsername("farec");
+		faRec.setFullName("Nguyen Huynh Thanh B");
 		
 		List<Role> listOfRole4 = new ArrayList<Role>();
 		listOfRole4.add(roleRepository.findByName("ROLE_USER"));
@@ -217,6 +219,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		//Tao Delivery Manager
 		DeliveryManager deliManager = new DeliveryManager();
 		deliManager.setUsername("delimanager");
+		deliManager.setFullName("De Li Ve Ry");
 		
 		List<Role> listOfRole5 = new ArrayList<Role>();
 		listOfRole5.add(roleRepository.findByName("ROLE_USER"));
@@ -242,6 +245,7 @@ public class MockProjectApplication  implements CommandLineRunner{
 		classStatusRepository.save(new ClassStatus("In-progress"));
 		classStatusRepository.save(new ClassStatus("Pending for review"));
 		classStatusRepository.save(new ClassStatus("Draft"));
+		classStatusRepository.save(new ClassStatus("Submitted"));
 		classStatusRepository.save(new ClassStatus("Closed"));
 		classStatusRepository.save(new ClassStatus("Declined"));
 		classStatusRepository.save(new ClassStatus("Waiting for more information"));
@@ -309,10 +313,15 @@ public class MockProjectApplication  implements CommandLineRunner{
 		ClassBatch c1 = new ClassBatch();
 		c1.setClassName("Fresher Developer Java");
 		c1.setClassCode("HCM_FR_Java_18_01");
+		c1.setPlannedTraineeNumber(20);
+		c1.setBudget(budgetRepository.findByBudgetName("CTC_Specific_Fresher_Training_Award"));
+		c1.setClassAdmin(classAdminRepository.findByUsername("admin"));
+		c1.setExpectedStartDate(DateUtils.parseDateFromString("2022-03-03"));
+		c1.setExpectedEndDate(DateUtils.parseDateFromString("2023-04-5"));
 		c1.setActualStartDate(DateUtils.parseDateFromString("2022-03-03"));
 		c1.setActualEndDate(DateUtils.parseDateFromString("2023-04-5"));
 		c1.setLocation(locationRepository.findByLocationName("District 1"));
-		c1.setClassStatus(classStatusRepository.findByClassStatusName("Planned"));
+		c1.setClassStatus(classStatusRepository.findByClassStatusName("Draft"));
 		
 		ClassBatch c2 = new ClassBatch();
 		c2.setClassName("Fresher Developer C#");

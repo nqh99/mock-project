@@ -39,9 +39,6 @@ public class TrainerProfile extends BaseEntity {
 	@Column(name = "FULLNAME", columnDefinition = "NVARCHAR(255)")
 	@NotEmpty(message = "Fullname cannot be empty")
 	private String fullName;
-	
-	@Column(name = "ACCOUNT", columnDefinition = "NVARCHAR(255)")
-	private String account;
 
 	@Temporal(TemporalType.DATE)
 	@Past(message = "Birthdate cannot be in the future")
