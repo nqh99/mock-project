@@ -29,7 +29,7 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 	ClassStatusRepository classStatusRepository;
 
 	@Override
-	public List<ClassBatch> filterSearchCriteria(ClassBatchCriteriaModel classBatchCriteriaModel) {
+	public List<ClassBatch> filterClassSearchCriteria(ClassBatchCriteriaModel classBatchCriteriaModel) {
 		Date toDate = null;
 		Date fromDate = null;
 
@@ -85,6 +85,7 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 		return new ArrayList<ClassBatch>(searchResult);
 	}
 
+	@Override
 	public boolean changeClassProgression(String classBatchId, List<String> requiredStatuses, String newStatus,
 			String userFullName, String completeMessage) {
 
@@ -110,6 +111,7 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 		return false;
 	}
 
+	@Override
 	public boolean changeClassProgression(String classBatchId, List<String> requiredStatuses, String newStatus,
 			String userFullName, String completeMessage, String remarksContent) {
 
@@ -136,6 +138,7 @@ public class ClassBatchServiceImpl implements ClassBatchService {
 		return false;
 	}
 
+	@Override
 	public ClassBatchViewModel convertToViewModel(ClassBatch b) {
 		ClassBatchViewModel a = new ClassBatchViewModel();
 		a.setId(b.getId());

@@ -50,7 +50,7 @@ public class ClassSearchController {
 			@RequestParam(name = "size", required = false) Optional<Integer> size,
 			ClassBatchCriteriaModel classBatchCriteriaModel, HttpSession session) {
 
-		List<ClassBatch> listOfClassBatches = classBatchService.filterSearchCriteria(classBatchCriteriaModel);
+		List<ClassBatch> listOfClassBatches = classBatchService.filterClassSearchCriteria(classBatchCriteriaModel);
 
 		session.setAttribute("listOfClassBatches", listOfClassBatches);
 		return getSearchResultPage(model, errorString, page, size, listOfClassBatches);
@@ -64,12 +64,12 @@ public class ClassSearchController {
 			@SessionAttribute(name = "listOfClassBatches", required = false) List<ClassBatch> listOfClassBatches) {
 
 		Integer defaultPageSize = 2;
-		ClassBatchCriteriaModel classBatchCriteriaModel = new ClassBatchCriteriaModel();
 
 		System.out.println("page: " + page);
 		System.out.println("size: " + size);
 		Integer currentPage = page.orElse(1);
 		Integer pageSize = size.orElse(defaultPageSize);
+		ClassBatchCriteriaModel classBatchCriteriaModel = new ClassBatchCriteriaModel();
 
 		List<Location> listOfLocations = locationRepository.findAll();
 		List<ClassStatus> listOfClassStatuses = classStatusRepository.findAll();
@@ -77,6 +77,7 @@ public class ClassSearchController {
 		for (ClassBatch clazz : listOfClassBatches) {
 			listOfClassNames.add(clazz.getClassName());
 		}
+		
 		Page<ClassBatch> classBatchPage = PaginationUtils.findPaginated(listOfClassBatches,
 				PageRequest.of(currentPage - 1, pageSize));
 
@@ -107,7 +108,7 @@ public class ClassSearchController {
 		model.addAttribute("listOfClassStatuses", listOfClassStatuses);
 		model.addAttribute("listOfClassNames", listOfClassNames);
 		model.addAttribute("classBatchCriteriaModel", classBatchCriteriaModel);
-		return "class_search_paged.html";
+		return "class_listing_paged.html";
 	}
 
 }

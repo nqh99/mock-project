@@ -100,7 +100,7 @@
 					</div>
 				</form>
 				<div class="row">
-					<form th:action="@{class_update}" method="POST">
+					<form th:action="@{class_update_redirect}" method="POST">
 						<div class="col">
 							<div class="table-responsive table-wrapper">
 								<p th:if="${errorString!=null}" style="color: red;"
@@ -155,23 +155,23 @@
 												class="dropdown-item"
 												th:text="${classBatchPage.numberOfElements}"
 												th:value="${classBatchPage.numberOfElements}"
-												th:href="@{/class_management(size=${classBatchPage.size}, page=${pageNumber})}">[current
+												th:href="@{${#httpServletRequest.requestURI}(size=${classBatchPage.size}, page=${pageNumber})}">[current
 													page size]</a></li>
 											<li th:selected="${classBatchPage.numberOfElements == size}"><a
 												class="dropdown-item" th:text="10" th:value="10"
-												th:href="@{/class_management(size=10, page=1)}">10</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=10, page=1)}">10</a></li>
 											<li th:selected="${classBatchPage.numberOfElements == size}"><a
 												class="dropdown-item" th:text="20" th:value="20"
-												th:href="@{/class_management(size=20, page=1)}">20</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=20, page=1)}">20</a></li>
 											<li th:selected="${classBatchPage.numberOfElements == size}"><a
 												class="dropdown-item" th:text="30" th:value="30"
-												th:href="@{/class_management(size=30, page=1)}">30</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=30, page=1)}">30</a></li>
 											<li th:selected="${classBatchPage.numberOfElements == size}"><a
 												class="dropdown-item" th:text="50" th:value="50"
-												th:href="@{/class_management(size=50, page=1)}">50</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=50, page=1)}">50</a></li>
 											<li th:selected="${classBatchPage.numberOfElements == size}"><a
 												class="dropdown-item" th:text="100" th:value="100"
-												th:href="@{/class_management(size=100, page=1)}">100</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=100, page=1)}">100</a></li>
 
 										</ul>
 									</div>
@@ -191,7 +191,7 @@
 												th:selected="${pageNumber == currentPage}"><a
 												class="dropdown-item"
 												th:text="${'Page ' + pageNumber + '/' + pageNumbers.size}"
-												th:href="@{/class_management(size=${classBatchPage.size}, page=${pageNumber})}">Action</a></li>
+												th:href="@{${#httpServletRequest.requestURI}(size=${classBatchPage.size}, page=${pageNumber})}">Action</a></li>
 										</ul>
 									</div>
 								</div>
@@ -202,17 +202,17 @@
 												<li class="page-item"
 													th:classappend="${currentPage == 1} ? disabled"><a
 													class="page-link"
-													th:href="@{/class_management(size=${classBatchPage.size}, page=${currentPage -1})}"><i
+													th:href="@{${#httpServletRequest.requestURI}(size=${classBatchPage.size}, page=${currentPage -1})}"><i
 														class="bi bi-chevron-double-left"></i></a></li>
 												<li th:each="pageNumber : ${pageNumbers}" class="page-item"
 													th:classappend="${pageNumber==classBatchPage.number + 1} ? active"><a
 													class="page-link"
-													th:href="@{/class_management(size=${classBatchPage.size}, page=${pageNumber})}"
+													th:href="@{${#httpServletRequest.requestURI}(size=${classBatchPage.size}, page=${pageNumber})}"
 													th:text="${pageNumber}">[first page]</a></li>
 												<li class="page-item"
 													th:classappend="${currentPage == pageNumbers.get(pageNumbers.size -1)} ? disabled"><a
 													class="page-link"
-													th:href="@{/class_management(size=${classBatchPage.size}, page=${currentPage +1})}"><i
+													th:href="@{${#httpServletRequest.requestURI}(size=${classBatchPage.size}, page=${currentPage +1})}"><i
 														class="bi bi-chevron-double-right"></i></a></li>
 											</ul>
 										</nav>
@@ -221,7 +221,8 @@
 							</div>
 							<div class="row">
 								<div class="mb-3">
-									<button type="button" class="btn btn-outline-secondary ">
+									<button type="button" class="btn btn-outline-secondary"
+									th:onclick="|window.location.href='class_create'|">
 										<i class="bi bi-plus-circle-fill text-success"></i> New Class
 									</button>
 									<button type="submit" class="btn btn-outline-secondary"
