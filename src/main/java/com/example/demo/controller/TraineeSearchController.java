@@ -16,32 +16,57 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.ClassBatch;
 import com.example.demo.entity.Trainee;
 import com.example.demo.model.ClassBatchViewModel;
 import com.example.demo.model.TraineeCriteriaModel;
 import com.example.demo.repository.ClassBatchRepository;
+import com.example.demo.repository.TraineeRepository;
 import com.example.demo.service.ClassBatchServiceImpl;
+import com.example.demo.service.TraineeServiceImpl;
 import com.example.demo.utils.PaginationUtils;
 
 @Controller
-public class ClassViewController {
+public class TraineeSearchController {
+
+	@Autowired
+	TraineeRepository traineeRepository;
 
 	@Autowired
 	ClassBatchRepository classBatchRepository;
 
 	@Autowired
+	TraineeServiceImpl traineeService;
+
+	@Autowired
 	ClassBatchServiceImpl classBatchService;
 
-	@RequestMapping(path = { "/class_view" }, method = RequestMethod.GET)
-	public String getViewClassPage(Model model,
+	@RequestMapping(path = { "/trainee_search_result" }, method = RequestMethod.POST)
+	public String postSearchTraineePage(Model model,
 			@RequestParam(name = "errorString", required = false) String errorString,
 			@RequestParam(name = "resultString", required = false) String resultString,
-			@RequestParam(name = "classBatchId", required = false) String classBatchId,
+			@SessionAttribute(name = "currentViewClassBatchId", required = false) String classBatchId,
 			@RequestParam(name = "page", required = false) Optional<Integer> page,
 			@RequestParam(name = "size", required = false) Optional<Integer> size,
-			HttpSession session) {
+			TraineeCriteriaModel traineeCriteriaModel, HttpSession session) {
+		
+		List<Trainee> listOfTrainee = traineeService.filterTraineeSearchCriteria(traineeCriteriaModel);
+		System.out.println("list of trainee:" + listOfTrainee);
+		session.setAttribute("listOfTrainee", listOfTrainee);
+		
+		return getSearchTraineePage(model, errorString, resultString, classBatchId, listOfTrainee, page, size);
+	}
+
+	@RequestMapping(path = { "/trainee_search_result" }, method = RequestMethod.GET)
+	public String getSearchTraineePage(Model model,
+			@RequestParam(name = "errorString", required = false) String errorString,
+			@RequestParam(name = "resultString", required = false) String resultString,
+			@SessionAttribute(name = "currentViewClassBatchId", required = false) String classBatchId,
+			@SessionAttribute(name = "listOfTrainee", required = false) List<Trainee> listOfTrainee,
+			@RequestParam(name = "page", required = false) Optional<Integer> page,
+			@RequestParam(name = "size", required = false) Optional<Integer> size) {
 
 		Integer defaultPageSize = 2;
 
@@ -55,7 +80,6 @@ public class ClassViewController {
 		System.out.println(classBatch.toString());
 		ClassBatchViewModel classBatchViewModel = classBatchService.convertToViewModel(classBatch);
 		
-		List<Trainee> listOfTrainee = new ArrayList<Trainee>(classBatch.getSetOfTrainees());
 		Page<Trainee> traineePage = PaginationUtils.findPaginated(listOfTrainee, PageRequest.of(currentPage - 1, pageSize));
 		
 		List<Integer> pageNumbers = new ArrayList<Integer>();
@@ -84,7 +108,6 @@ public class ClassViewController {
 		model.addAttribute("classBatchViewModel", classBatchViewModel);
 		model.addAttribute("traineeCriteriaModel", new TraineeCriteriaModel());
 		model.addAttribute("resultString", resultString);
-		session.setAttribute("currentViewClassBatchId", classBatchId);
 		return "class_view_paged";
 	}
 

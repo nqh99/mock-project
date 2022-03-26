@@ -556,6 +556,7 @@
 									<div class="row mt-3 mb-3">
 										<div class="mb-2 row col-10">
 											<button type="button"
+											th:onclick="|window.location.href='class_update?classBatchId=${classBatchViewModel.id}'|"
 												sec:authorize="hasAnyRole('FA_MANAGER','ADMIN','DELIVERY_MANAGER')"
 												class="btn btn-outline-secondary col-sm-2 me-1">
 												<div class="row">
@@ -1182,23 +1183,23 @@
 															class="dropdown-item"
 															th:text="${traineePage.numberOfElements}"
 															th:value="${traineePage.numberOfElements}"
-															th:href="@{/class_view(size=${traineePage.size}, page=${pageNumber})}">[current
+															th:href="@{/${#httpServletRequest.requestURI}(size=${traineePage.size}, page=${pageNumber})}">[current
 																page size]</a></li>
 														<li th:selected="${traineePage.numberOfElements == size}"><a
 															class="dropdown-item" th:text="10" th:value="10"
-															th:href="@{/class_view(size=10, page=1)}">10</a></li>
+															th:href="@{/${#httpServletRequest.requestURI}(size=10, page=1)}">10</a></li>
 														<li th:selected="${traineePage.numberOfElements == size}"><a
 															class="dropdown-item" th:text="20" th:value="20"
-															th:href="@{/class_view(size=20, page=1)}">20</a></li>
+															th:href="@{/${#httpServletRequest.requestURI}(size=20, page=1)}">20</a></li>
 														<li th:selected="${traineePage.numberOfElements == size}"><a
 															class="dropdown-item" th:text="30" th:value="30"
-															th:href="@{/class_view(size=30, page=1)}">30</a></li>
+															th:href="@{/${#httpServletRequest.requestURI}(size=30, page=1)}">30</a></li>
 														<li th:selected="${traineePage.numberOfElements == size}"><a
 															class="dropdown-item" th:text="50" th:value="50"
-															th:href="@{/class_view(size=50, page=1)}">50</a></li>
+															th:href="@{/${#httpServletRequest.requestURI}(size=50, page=1)}">50</a></li>
 														<li th:selected="${traineePage.numberOfElements == size}"><a
 															class="dropdown-item" th:text="100" th:value="100"
-															th:href="@{/class_view(size=100, page=1)}">100</a></li>
+															th:href="@{/${#httpServletRequest.requestURI}(size=100, page=1)}">100</a></li>
 
 													</ul>
 												</div>
@@ -1219,7 +1220,7 @@
 															th:selected="${pageNumber == currentPage}"><a
 															class="dropdown-item"
 															th:text="${'Page ' + pageNumber + '/' + pageNumbers.size}"
-															th:href="@{/class_view(size=${traineePage.size}, page=${pageNumber})}">Action</a>
+															th:href="@{${#httpServletRequest.requestURI}(size=${traineePage.size}, page=${pageNumber})}">Action</a>
 														</li>
 													</ul>
 												</div>
@@ -1231,18 +1232,18 @@
 															<li class="page-item"
 																th:classappend="${currentPage == 1} ? disabled"><a
 																class="page-link"
-																th:href="@{/class_view(size=${traineePage.size}, page=${currentPage -1})}"><i
+																th:href="@{${#httpServletRequest.requestURI}(size=${traineePage.size}, page=${currentPage -1})}"><i
 																	class="bi bi-chevron-double-left"></i></a></li>
 															<li th:each="pageNumber : ${pageNumbers}"
 																class="page-item"
 																th:classappend="${pageNumber==traineePage.number + 1} ? active"><a
 																class="page-link"
-																th:href="@{/class_view(size=${traineePage.size}, page=${pageNumber})}"
+																th:href="@{${#httpServletRequest.requestURI}(size=${traineePage.size}, page=${pageNumber})}"
 																th:text="${pageNumber}">[page]</a></li>
 															<li class="page-item"
 																th:classappend="${currentPage == pageNumbers.get(pageNumbers.size -1)} ? disabled"><a
 																class="page-link"
-																th:href="@{/class_view(size=${traineePage.size}, page=${currentPage +1})}"><i
+																th:href="@{${#httpServletRequest.requestURI}(size=${traineePage.size}, page=${currentPage +1})}"><i
 																	class="bi bi-chevron-double-right"></i></a></li>
 														</ul>
 													</nav>
